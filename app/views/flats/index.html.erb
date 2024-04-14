@@ -1,0 +1,45 @@
+<nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3 bg-light">
+  <p class="navbar-brand text-secondary-emphasis">Simple Airbnb</p>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#scrollspyHeading1">First</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#scrollspyHeading2">Second</a>
+    </li>
+    <li class="nav-link">
+      <p class="btn btn-primary"><%= link_to "Add flat", new_flat_path, class: "text-white text-decoration-none" %></p>
+    </li>
+  </ul>
+</nav>
+
+
+
+<div class="container d-flex">
+  <div class="row row-cols-3 g-4">
+
+  <% @flats.each do |flat| %>
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img src="<%= flat.image %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= flat.name %></h5>
+          <p class="card-text"><%= flat.address %></p>
+          <div class="d-flex">
+            <p><i class="fa-solid fa-person"></i></i><%= flat.number_of_guests %></p>
+            <p class="ms-3"><i class="fa-solid fa-euro-sign"></i> <%= flat.price_per_night %></p>
+          </div>
+
+        </div>
+        <div class="d-flex border">
+          <p class="p-2"><%= link_to "More info", flat_path(flat), class: "text-decoration-none text-primary" %></p>
+          <p class="p-2"><%= link_to "Edit", edit_flat_path(flat), class: "text-decoration-none text-warning" %></p>
+          <p class="p-2"><%= link_to "Delete", flat_path(flat), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-decoration-none text-danger" %></p>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  </div>
+</div>
